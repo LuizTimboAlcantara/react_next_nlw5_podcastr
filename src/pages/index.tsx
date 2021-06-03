@@ -4,21 +4,43 @@ import ptBR from "date-fns/locale/pt-BR";
 import { api } from "../services/api";
 import { ConvertDurationToTimeString } from "../utils/convertDurationToTimeString";
 
+import styles from "./home.module.scss";
+
 interface Episode {
   id: string;
   title: string;
-  member: string;
+  members: string;
   published_at: string;
+  thumbnail: string;
+  description: string;
+  duration: number;
+  durationAsString: string;
+  url: string;
 }
 interface HomeProps {
-  episodes: Episode[];
+  lastestEpisodes: Episode[];
+  allEpisodes: Episode[];
 }
 
-export default function Home(props: HomeProps) {
+export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
   return (
-    <div>
-      <h1>Index</h1>
-      <p>{JSON.stringify(props.episodes)}</p>
+    <div className={styles.homePage}>
+      <section className={styles.latestEpisodes}>
+        <h2>Últimos lançamentos</h2>
+        <ul>
+          <li>
+            {lastestEpisodes.map((episode) => {
+              return (
+                <li key={episode.id}>
+                  <img src={episode.thumbnail} alt={episode.title} />
+                </li>
+              );
+            })}
+          </li>
+        </ul>
+      </section>
+
+      <section className={styles.allEpisodes}></section>
     </div>
   );
 }
@@ -48,9 +70,13 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
 
+  const lastestEpisodes = episodes.slice(0, 2);
+  const allEpisodes = episodes.slice(2, episodes.length);
+
   return {
     props: {
-      episodes,
+      lastestEpisodes,
+      allEpisodes,
     },
     revalidate: 60 * 60 * 8,
   };
