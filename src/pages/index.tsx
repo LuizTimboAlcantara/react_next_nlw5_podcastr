@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { api } from "../services/api";
@@ -11,9 +12,8 @@ interface Episode {
   id: string;
   title: string;
   members: string;
-  published_at: string;
+  publishedAt: string;
   thumbnail: string;
-  description: string;
   duration: number;
   durationAsString: string;
   url: string;
@@ -41,9 +41,11 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
                 />
 
                 <div className={styles.episodesDetails}>
-                  <a href="">{episode.title}</a>
+                  <Link href={`/episodes/${episode.id}`}>
+                    <a>{episode.title}</a>
+                  </Link>
                   <p>{episode.members}</p>
-                  <span>{episode.published_at}</span>
+                  <span>{episode.publishedAt}</span>
                   <span>{episode.durationAsString}</span>
                 </div>
 
@@ -73,7 +75,7 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
             {allEpisodes.map((episode) => {
               return (
                 <tr key={episode.id}>
-                  <td>
+                  <td style={{ width: 72 }}>
                     <Image
                       width={120}
                       height={120}
@@ -84,11 +86,13 @@ export default function Home({ lastestEpisodes, allEpisodes }: HomeProps) {
                   </td>
 
                   <td>
-                    <a href="">{episode.title}</a>
+                    <Link href={`/episodes/${episode.id}`}>
+                      <a>{episode.title}</a>
+                    </Link>
                   </td>
 
                   <td>{episode.members}</td>
-                  <td>{episode.published_at}</td>
+                  <td style={{ width: 200 }}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
 
                   <td>
@@ -120,7 +124,6 @@ export const getStaticProps: GetStaticProps = async () => {
       id: episode.id,
       title: episode.title,
       thumbnail: episode.thumbnail,
-      description: episode.description,
       members: episode.members,
       publishedAt: format(parseISO(episode.published_at), "d MMM yy", {
         locale: ptBR,
