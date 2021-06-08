@@ -1,12 +1,10 @@
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { GetStaticProps, GetStaticPaths } from "next";
-
 import { api } from "../../services/api";
 import { ConvertDurationToTimeString } from "../../utils/convertDurationToTimeString";
-
 import styles from "./episode.module.scss";
 
 interface Episode {
@@ -49,10 +47,7 @@ export default function Episode({ episode }: EpisodeProps) {
         <span>{episode.durationAsString}</span>
       </header>
 
-      <div
-        className={styles.description}
-        dangerouslySetInnerHTML={{ __html: episode.description }}
-      />
+      <div className={styles.description} dangerouslySetInnerHTML={{ __html: episode.description }} />
     </div>
   );
 }
