@@ -1,5 +1,4 @@
  <h1 align="Left">  
-  <img src="">
   <Strong><img src=".\public\favicon.png " />Podcastr NLW5 - ReactJS</Strong>
  </h1>
 
