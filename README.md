@@ -28,7 +28,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - Axios;
 - Next;
 - TypeScript;
-- Date-fns";
+- Date-fns;
 - Sass;
 
 ---
