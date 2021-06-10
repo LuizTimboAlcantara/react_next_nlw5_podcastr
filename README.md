@@ -68,7 +68,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 # Rodar a aplicação
   $ yarn dev ou npm dev
 
-  # Rodar o servidor de dados
+# Rodar o servidor de dados
   $ yarn server ou npm server
 
 ```
