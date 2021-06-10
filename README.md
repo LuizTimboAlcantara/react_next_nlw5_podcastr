@@ -2,11 +2,11 @@
   <Strong><img src=".\public\favicon.png " />Podcastr NLW5 - ReactJS</Strong>
  </h1>
 
-<h1 align="center">
   <img src=".\public\aplicacao.gif" />
-<h1>
 
-# Índice
+---
+
+## 🔎 Índice
 
 - [Sobre](#-sobre)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
